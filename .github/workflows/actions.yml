@@ -17,9 +17,9 @@ jobs:
       - name: Log in to Docker Hub
         env:
           DOCKER_USERNAME: ${{ secrets.MY-DOCKER-HUB-ACCESS-TOKEN }}
-          DOCKER_PASSWORD: ${{ secrets.dckr_pat_9oMq5DThU14SiNWDBgaYL4M7MTM }}
+          DOCKER_ACCESS_TOKEN: ${{ secrets.dckr_pat_9oMq5DThU14SiNWDBgaYL4M7MTM }}
         run: 
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker login -u $DOCKER_USERNAME --p $DOCKER_ACCESS_TOKEN
         
       - name: Build and tag Docker image
         run: 
