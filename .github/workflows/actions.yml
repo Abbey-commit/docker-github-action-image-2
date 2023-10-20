@@ -8,8 +8,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: Build docker images
         run: docker build -t demo .
 
+      - name: Log in to Docker Hub
+        env:
+          DOCKER_USERNAME: ${{ secrets.MY-DOCKER-HUB-ACCESS-TOKEN }}
+          DOCKER_PASSWORD: ${{ secrets.dckr_pat_9oMq5DThU14SiNWDBgaYL4M7MTM }}
+        run: 
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+        
+        name: Build and tag Docker image
+        run: 
+        docker build -t skopiskopa:latest -f Dockerfile .
+        docker tag skopiskopa:latest skopiskopa:${{ github.sha }}
