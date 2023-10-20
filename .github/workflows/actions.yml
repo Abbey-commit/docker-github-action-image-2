@@ -21,7 +21,7 @@ jobs:
         run: 
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
         
-        name: Build and tag Docker image
+      - name: Build and tag Docker image
         run: 
-        docker build -t skopiskopa:latest -f Dockerfile .
-        docker tag skopiskopa:latest skopiskopa:${{ github.sha }}
+          docker build -t skopiskopa:latest -f Dockerfile .
+          docker tag skopiskopa:latest skopiskopa:${{ github.sha }}
