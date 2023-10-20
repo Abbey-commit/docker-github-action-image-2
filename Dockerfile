@@ -1,3 +1,3 @@
-FROM ubuntu:20.0.4
+FROM ubuntu:20.04
 RUN apt-get update
-RUN apt-get install nginx curl net-tolls vim -y
+RUN apt-get install nginx curl net-tools vim -y
